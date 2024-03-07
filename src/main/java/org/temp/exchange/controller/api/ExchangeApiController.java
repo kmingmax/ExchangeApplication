@@ -1,5 +1,7 @@
 package org.temp.exchange.controller.api;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.temp.exchange.enums.RtnCode;
@@ -24,13 +26,15 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @AllArgsConstructor
 @RequestMapping(value = "/api")
+@Api(tags = "Foreign Exchange Rate api")
 public class ExchangeApiController {
 
     private final ExchangeApiService exchangeApiService;
 
 
+    @ApiOperation("取得匯率資料")
     @PostMapping(value = "/query")
-    public ExchangeApiResponse<?> queryExchange(@RequestBody QueryExchangeDataRequest model, HttpServletRequest req, HttpServletResponse res)  {
+    public ExchangeApiResponse<QueryExchangeDataResponse> queryExchange(@RequestBody QueryExchangeDataRequest model, HttpServletRequest req, HttpServletResponse res)  {
         try {
             QueryExchangeDataResponse queryExchangeDataResponse = exchangeApiService.getExchangeData(model);
             return new ExchangeApiResponse<>(queryExchangeDataResponse);
@@ -42,8 +46,9 @@ public class ExchangeApiController {
 
     }
 
+    @ApiOperation("新增匯率資料")
     @PostMapping(value = "/create")
-    public ExchangeApiResponse<?> createExchange(@RequestBody CreateExchangeDataRequest model, HttpServletRequest req, HttpServletResponse res)  {
+    public ExchangeApiResponse<CreateExchangeDataResponse> createExchange(@RequestBody CreateExchangeDataRequest model, HttpServletRequest req, HttpServletResponse res)  {
         try {
             CreateExchangeDataResponse createExchangeDataResponse = exchangeApiService.createExchangeData(model);
             return new ExchangeApiResponse<>(createExchangeDataResponse);
@@ -55,8 +60,9 @@ public class ExchangeApiController {
 
     }
 
+    @ApiOperation("修改匯率資料")
     @PostMapping(value = "/update")
-    public ExchangeApiResponse<?> updateExchange(@RequestBody UpdateExchangeDataRequest model, HttpServletRequest req, HttpServletResponse res)  {
+    public ExchangeApiResponse<UpdateExchangeDataResponse> updateExchange(@RequestBody UpdateExchangeDataRequest model, HttpServletRequest req, HttpServletResponse res)  {
         try {
             UpdateExchangeDataResponse updateExchangeDataResponse = exchangeApiService.updateExchangeData(model);
             return new ExchangeApiResponse<>(updateExchangeDataResponse);
@@ -68,8 +74,9 @@ public class ExchangeApiController {
 
     }
 
+    @ApiOperation("查詢匯率資料")
     @PostMapping(value = "/delete")
-    public ExchangeApiResponse<?> deleteExchange(@RequestBody DeleteExchangeDataRequest model, HttpServletRequest req, HttpServletResponse res)  {
+    public ExchangeApiResponse<DeleteExchangeDataResponse> deleteExchange(@RequestBody DeleteExchangeDataRequest model, HttpServletRequest req, HttpServletResponse res)  {
         try {
             DeleteExchangeDataResponse deleteExchangeDataResponse = exchangeApiService.deleteExchangeData(model);
             return new ExchangeApiResponse<>(deleteExchangeDataResponse);

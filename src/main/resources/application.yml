@@ -13,6 +13,9 @@ thymeleaf:
 server:
   port: 8080
 
+taifex:
+  api: https://openapi.taifex.com.tw/v1
+
 spring:
 #  sql:
 #    init:

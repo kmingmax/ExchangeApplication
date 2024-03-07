@@ -6,10 +6,8 @@
 ## Database: H2
 
 ## Controller
-- /
-## API:
-- /api/query
-- /api/create
-- /api/update
-- /api/delete
+- 匯率首頁 http://localhost:8080/ 
 
+## API 規格
+Use  Swagger UI Document<br>
+http://localhost:8080/swagger-ui/#/Foreign%20Exchange%20Rate%20api

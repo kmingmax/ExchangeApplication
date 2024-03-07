@@ -9,6 +9,7 @@ import org.temp.exchange.enums.RtnCode;
 import org.temp.exchange.exception.SystemException;
 import org.temp.exchange.model.taifex.request.TaiFexGetDailyExchangeRateRequest;
 import org.temp.exchange.model.taifex.response.TaiFexGetDailyExchangeRateResponse;
+import org.temp.exchange.properties.TaiFexProperties;
 import org.temp.exchange.service.TaiFexApiService;
 
 import java.util.ArrayList;
@@ -20,8 +21,7 @@ public class TaiFexApiServiceImpl implements TaiFexApiService {
 
     private final HttpClientService httpClientService;
 
-    private final String TaiFexUrl = "https://openapi.taifex.com.tw/v1";
-
+    private final TaiFexProperties taiFexProperties;
 
     /**
      * @param taiFexGetDailyExchangeRateRequest  TaiFexGetDailyExchangeRateRequest
@@ -31,8 +31,7 @@ public class TaiFexApiServiceImpl implements TaiFexApiService {
     @Override
     public List<TaiFexGetDailyExchangeRateResponse> getDailyExchangeRate(TaiFexGetDailyExchangeRateRequest taiFexGetDailyExchangeRateRequest) throws SystemException {
         ParameterizedTypeReference<List<TaiFexGetDailyExchangeRateResponse>> responseType = new ParameterizedTypeReference<List<TaiFexGetDailyExchangeRateResponse>>() {};
-        System.out.println((TaiFexUrl + taiFexGetDailyExchangeRateRequest.getUrl()));
-        ResponseEntity<List<TaiFexGetDailyExchangeRateResponse>> response = httpClientService.get(TaiFexUrl + taiFexGetDailyExchangeRateRequest.getUrl(), responseType);
+        ResponseEntity<List<TaiFexGetDailyExchangeRateResponse>> response = httpClientService.get(taiFexProperties.getApi() + taiFexGetDailyExchangeRateRequest.getUrl(), responseType);
         if (response.getStatusCode().is2xxSuccessful()) {
             return response.getBody();
         } else {
