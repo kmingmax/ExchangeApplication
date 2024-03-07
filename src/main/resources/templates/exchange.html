@@ -1,0 +1,30 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>匯率列表</title>
+</head>
+<body>
+<div th:if="${error}" th:text="${error}"></div>
+<div th:unless="${error}">
+    <table>
+        <thead>
+        <tr>
+            <th>日期</th>
+            <th>類型</th>
+            <th>匯率</th>
+            <!-- 其他欄位 -->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="rate : ${data}">
+            <td th:text="${rate.date}">日期</td>
+            <td th:text="${rate.type}">類型</td>
+            <td th:text="${rate.rate}">匯率</td>
+            <!-- 其他欄位 -->
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
