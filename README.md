@@ -5,12 +5,11 @@
 
 ## Database: H2
 
+## Controller
+- /
 ## API:
-/api/query
-/api/create
-/api/update
-/api/delete
+- /api/query
+- /api/create
+- /api/update
+- /api/delete
 
-##  TODO
-- SWAGGER 
-- TEST CASE
